@@ -6,12 +6,13 @@ on:
   workflow_dispatch:
 
 jobs:
+  image: maven:3.9.6-eclipse-temurin-17
   build:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - name: Run a one-line script
-        run:  mvn clean install
+        run:  mvn clean package
   test:
     runs-on: self-hosted
     steps:
