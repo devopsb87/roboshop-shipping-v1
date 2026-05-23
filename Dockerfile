@@ -3,5 +3,5 @@ RUN              useradd -d /app roboshop
 RUN              mkdir /app
 USER             roboshop
 WORKDIR          /app
-COPY             target/shipping-1.0.jar /app/shipping.jar
+COPY             ./shipping-1.0.jar /app/shipping.jar
 ENTRYPOINT       ["java", "-jar", "/app/shipping.jar"]

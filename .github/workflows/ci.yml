@@ -12,6 +12,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Run a one-line script
         run:  mvn clean package
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+         name: shipping-jar
+         path: target/shipping-1.0.jar
+         retention-days: 1
   test:
     runs-on: self-hosted
     steps:
@@ -26,6 +32,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Docker login
         run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 624234316771.dkr.ecr.us-east-1.amazonaws.com
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+         name: shipping-jar
+         path: ./
       - name: docker build
         run: docker build -t 624234316771.dkr.ecr.us-east-1.amazonaws.com/shipping:latest .
       - name: docker push
