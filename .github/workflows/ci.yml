@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run a one-line script
-        run:  mvn clean package
+        run:  mvn clean install
   test:
     runs-on: self-hosted
     steps:
